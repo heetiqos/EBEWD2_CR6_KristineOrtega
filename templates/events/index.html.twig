@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events index{% endblock %}
+
+{% block body %}
+<div class="container"">
+<h1 style="padding: 50px; text-align: center;">Upcoming Events</h1>
+<div class="d-flex" style="width: 40%; margin: auto; justify-content: space-around;  " >
+    <a href="/" class="btn btn-primary" style="border-radius: 0%;">All Categories</a>
+    <a href="/filter/theater" class="btn btn-primary" style="border-radius: 0%;">Theater</a>
+    <a href="/filter/sports" class="btn btn-primary" style="border-radius: 0%;">Sports</a>
+    <a href="/filter/festival" class="btn btn-primary" style="border-radius: 0%;">Festival</a>
+    <a href="/filter/concert" class="btn btn-primary" style="border-radius: 0%;">Concert</a>
+</div>
+
+{# <a class="btn btn-primary mb-3" href="{{path('app_events_new')}}">Create New</a> #}
+
+<div class="row row-cols-3">
+{% for events in events %}
+<div>
+    <div class="card" style="width: 18rem; height: 450px;margin: 20px; border-style:none;">
+        <img src="{{events.image}}" class="card-img-top" alt="event image" style="height: 200px; object-fit:cover; padding: 5px; ">
+        <div class="card-body">
+            <h5 class="card-title">{{events.name}}</h5>
+            <p class="card-text">{{events.category}}</p>
+            <p class="card-text">{{events.date_and_start_time|date('d.m.Y H:i')}}</p>
+            <p class="card-text">{{events.address}}</p>
+            <div class="d-flex" style="gap: 10px;" >
+            <a class="btn btn-primary" style="border-radius: 0%;" href="{{path('app_events_show', {id: events.id})}}">Details</a>
+            <a class="btn btn-warning" style="border-radius: 0%;" href="{{path('app_events_edit', {id: events.id})}}">Edit</a>
+            {{ include ("events/_delete_form.html.twig")}}
+        </div>
+            </div>
+
+    </div>
+</div>
+
+{% else %}
+
+<div>No Records Found</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+{% endblock %}
