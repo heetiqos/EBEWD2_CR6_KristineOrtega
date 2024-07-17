@@ -5,7 +5,11 @@
 {% block body %}
 
 <div class="container">
+    {% if events %}
     <h1 style="padding: 50px; text-align: center;">Event Category: {{events[0].category}}</h1>
+    {% else %}
+    <h1 style="padding: 50px; text-align: center;">No Events Available</h1>
+    {% endif %}
     <div class="d-flex" style="width: 40%; margin: auto; justify-content: space-around;  " >
         <a href="/" class="btn btn-primary" style="border-radius: 0%;">All Categories</a>
         <a href="/filter/theater" class="btn btn-primary" style="border-radius: 0%;">Theater</a>
